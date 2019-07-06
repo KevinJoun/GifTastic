@@ -14,6 +14,13 @@ $(".cars").on("click", function{
     event.preventDefault();
     var car = $(this).attr("data-name");
     var queryURL = "http://api.giphy.com/v1/gifs/search?api_key=5XoCBIfxbh4ZdbpWWu7O7xCVS5egoy7J&limit=10&rating=PG-13&q=" + car
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function(response){
+        var results = resonse.data;
+        var addDiv = $("<div>");
+    })
 })
     
 });
