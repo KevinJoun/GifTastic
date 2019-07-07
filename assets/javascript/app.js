@@ -11,7 +11,7 @@ for(var i=0; i<topics.length; i++){
     addButton.text(topics[i]);
     $("#header-container").append(addButton);
 }};
-
+addButtons(); 
 
 function addForm(){
     var addH3 = $("<h3>").text("Add a car company");
@@ -44,9 +44,15 @@ $(document).on("click", ".cars", function(){
         var results = response.data;
         var addDiv = $("<div>");
         var rating = results[i].rating;
-        var addP = $("<p>").text("Rating: " + rating);
+        var addP = $("<p>").text("Rating: " + rating.toUpperCase());
         var addImg = $("<img>");
-        addImg.attr("src", results[i].images.fixed_height.url);
+        addImg.attr("src", results[i].images.fixed_height_still.url);
+        addImg.attr("data-still", results[i].images.fixed_height_still.url);
+        addImg.attr("data-animate", results[i].images.fixed_height.url);
+        addImg.attr("data-state", "still");
+        addImg.addClass("gif");
+        addDiv.addClass("gif-holder");
+        addP.addClass("rating")
         addDiv.append(addP);
         addDiv.append(addImg);
         $("#left-body-container").prepend(addDiv);
@@ -60,6 +66,15 @@ $("#submit-button").on("click", function(event){
     addButtons();
     $("#userInput").val("");
 })
-
-addButtons();
+$(document).on("click", ".gif", function(){
+    var state = $(this).attr("data-state");
+    console.log(state)
+    if(state === "still") {
+        $(this).attr("src", $(this).attr("data-animate"))
+        $(this).attr("data-state", "animate");
+    } else{
+        $(this).attr("src", $(this).attr("data-still"))
+        $(this).attr("data-state", "still");
+    }
+});
 });

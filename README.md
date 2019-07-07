@@ -1,1 +1,1 @@
-# GifTastic
+Welcome to my Giftastic page! Here there are a list of car companies as buttons. Clicking a button will display 10 gifs with the rating of the button you clicked. You can also add your own buttons as well.
